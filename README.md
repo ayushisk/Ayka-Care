@@ -1,143 +1,61 @@
-📝 Notes Management API (FastAPI)
+🛠️ How to Run the Project Locally
+Follow these steps to get the API up and running on your local machine.
 
-A simple Notes Management REST API built using FastAPI, SQLAlchemy, and JWT Authentication.
-This project allows users to register, login, and perform full CRUD operations on personal notes.
+1. Prerequisites
+   Ensure you have Python 3.9+ installed on your system. You can check this by running:
+   code
+   Bash
+   python --version
+2. Clone the Repository
+   code
+   Bash
+   git clone <YOUR_GITHUB_REPOSITORY_URL>
+   cd notes_api
+3. Create a Virtual Environment
+   It is recommended to use a virtual environment to keep dependencies organized.
+   On Windows:
+   code
+   Bash
+   python -m venv venv
+   .\venv\Scripts\activate
+   On macOS/Linux:
+   code
+   Bash
+   python3 -m venv venv
+   source venv/bin/activate
+4. Install Dependencies
+   Install all required libraries using the provided requirements.txt file:
+   code
+   Bash
+   pip install -r requirements.txt
+5. Set Up the Database
+   This project uses SQLite for easy evaluation. You do not need to perform any manual setup. The database file (notes.db) will be created automatically in the root directory the first time you run the application.
+6. Run the Application
+   Start the FastAPI server using Uvicorn:
+   code
+   Bash
+   uvicorn app.main:app --reload
+   The server will start at: http://127.0.0.1:8000
+7. Access API Documentation (Swagger)
+   FastAPI automatically generates interactive documentation. Once the server is running, open your browser and visit:
+   Swagger UI: http://127.0.0.1:8000/docs (Best for testing)
+   ReDoc: http://127.0.0.1:8000/redoc
+   🧪 Quick Testing Guide (For the Evaluator)
+   Go to /docs.
+   Use the /register endpoint to create a new user.
+   Use the /login endpoint with the same credentials to receive a JWT access_token.
+   Copy the token, click the "Authorize" button at the top of the page, paste the token, and click Authorize.
+   Now you can test the /notes endpoints (Create, Read, Update, Delete) as an authenticated user.
+   🐳 Running with Docker (Bonus)
+   If you have Docker installed, you can run the entire setup with a single command:
+   code
+   Bash
 
-🚀 Tech Stack
-Python 3.10+
-FastAPI
-SQLite (can be replaced with PostgreSQL/MySQL)
-SQLAlchemy ORM
-Pydantic
-JWT (JSON Web Token)
-Passlib (bcrypt hashing)
+# Build the image
 
-📌 Features
+docker build -t notes-api .
 
-🔐 Authentication
+# Run the container
 
-User Registration API
-User Login API
-JWT Token-based Authentication
-🗒 Notes Management
-Create Note
-Get All Notes (User-specific)
-Update Note
-Delete Note
-
-📂 Project Structures
-
-app/
-│
-├── main.py # FastAPI routes
-├── models.py # Database models
-├── schemas.py # Pydantic schemas
-├── database.py # DB connection setup
-├── auth.py # Authentication & JWT logic
-│
-notes.db # SQLite database (auto-created)
-⚙️ Installation & Setup
-1️⃣ Clone Repository
-git clone https://github.com/your-username/notes-api.git
-cd notes-api
-2️⃣ Create Virtual Environment
-python -m venv venv
-Activate venv
-
-Windows:
-
-venv\Scripts\activate
-
-Mac/Linux:
-
-source venv/bin/activate
-3️⃣ Install Dependencies
-pip install fastapi uvicorn sqlalchemy passlib bcrypt python-jose pydantic
-4️⃣ Run the Server
-uvicorn app.main:app --reload
-🌐 API Base URL
-http://localhost:8000
-📘 API Documentation (Swagger UI)
-
-FastAPI automatically provides interactive docs:
-
-Swagger UI 👉 http://localhost:8000/docs
-ReDoc 👉 http://localhost:8000/redoc
-🔐 Authentication Flow
-
-1. Register User
-
-POST /register
-
-{
-"email": "test@gmail.com",
-"password": "123456"
-} 2. Login User
-
-POST /login
-
-{
-"email": "test@gmail.com",
-"password": "123456"
-}
-Response:
-{
-"access_token": "jwt_token_here",
-"token_type": "bearer"
-} 3. Use Token in Protected Routes
-
-Add this in headers:
-
-Authorization: Bearer <your_token>
-🗒 Notes APIs
-➕ Create Note
-
-POST /notes
-
-{
-"title": "My Note",
-"content": "This is my note content"
-}
-📄 Get All Notes
-
-GET /notes
-
-✏️ Update Note
-
-PUT /notes/{note_id}
-
-{
-"title": "Updated Title",
-"content": "Updated content"
-}
-❌ Delete Note
-
-DELETE /notes/{note_id}
-
-🧪 Testing (Postman)
-
-You can test APIs using:
-
-Postman Collection (recommended)
-Swagger UI (/docs)
-⚠️ Error Handling
-400 → Email already registered
-401 → Invalid credentials / Unauthorized access
-404 → Note not found
-500 → Server error
-🎯 Bonus Features Implemented
-JWT Authentication 🔐
-Password hashing using bcrypt 🔑
-User-specific notes isolation 👤
-Swagger documentation 📘
-🚀 Future Improvements
-Add pagination for notes
-Role-based access (Admin/User)
-Deploy using Docker
-Deploy on Render / AWS / Railway
-Add refresh tokens
-
-👨‍💻 Author
-
-Ayushi Sinha
-Built as part of FastAPI backend assignment.
+docker run -p 8000:8000 notes-api
+The API will then be available at http://localhost:8000/docs.
