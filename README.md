@@ -25,7 +25,7 @@ Get All Notes (User-specific)
 Update Note
 Delete Note
 
-📂 Project Structure
+📂 Project Structures
 
 app/
 │
