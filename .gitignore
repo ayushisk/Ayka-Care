@@ -1,0 +1,38 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# SQLite database
+*.db
+*.sqlite3
+
+# Environment variables
+.env
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Migrations (if you add Alembic later)
+alembic/versions/__pycache__/
+
+# pytest cache
+.pytest_cache/
+
+# mypy cache
+.mypy_cache/
