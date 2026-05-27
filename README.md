@@ -1,4 +1,5 @@
-🛠️ How to Run the Project Locally
+# How to Run the Project Locally
+
 Follow these steps to get the API up and running on your local machine.
 
 1. Prerequisites
