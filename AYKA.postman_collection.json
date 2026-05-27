@@ -1,0 +1,221 @@
+{
+  "info": {
+    "_postman_id": "24d6b13b-58f4-4af7-8de2-01bb87b17f67",
+    "name": "AYKA",
+    "description": "StartFragment📝 Notes Management API (FastAPI)  \nA simple Notes Management REST API built using FastAPI, SQLAlchemy, and JWT Authentication.This project allows users to register, login, and perform full CRUD operations on personal notes.  \n🚀 Tech StackPython 3.10+FastAPISQLite (can be replaced with PostgreSQL/MySQL)SQLAlchemy ORMPydanticJWT (JSON Web Token)Passlib (bcrypt hashing)  \n📌 Features  \n🔐 Authentication  \nUser Registration APIUser Login APIJWT Token-based Authentication🗒 Notes ManagementCreate NoteGet All Notes (User-specific)Update NoteDelete Note  \n📂 Project Structures  \napp/│├── main.py # FastAPI routes├── models.py # Database models├── schemas.py # Pydantic schemas├── database.py # DB connection setup├── auth.py # Authentication & JWT logic│notes.db # SQLite database (auto-created)⚙️ Installation & Setup1️⃣ Clone Repositorygit clone [https://github.com/your-username/notes-api.gitcd](https://github.com/your-username/notes-api.gitcd) notes-api2️⃣ Create Virtual Environmentpython -m venv venvActivate venv  \nWindows:  \nvenv\\\\Scripts\\\\activate  \nMac/Linux:  \nsource venv/bin/activate3️⃣ Install Dependenciespip install fastapi uvicorn sqlalchemy passlib bcrypt python-jose pydantic4️⃣ Run the Serveruvicorn app.main:app --reload🌐 API Base URL[http://localhost:8000📘](http://localhost:8000📘) API Documentation (Swagger UI)  \nFastAPI automatically provides interactive docs:  \nSwagger UI 👉 [http://localhost:8000/docsReDoc](http://localhost:8000/docsReDoc) 👉 [http://localhost:8000/redoc🔐](http://localhost:8000/redoc🔐) Authentication Flow  \n1\\. Register User  \nPOST /register  \n{\"email\": \"[test@gmail.com](https://mailto:test@gmail.com)\",\"password\": \"123456\"} 2. Login User  \nPOST /login  \n{\"email\": \"[test@gmail.com](https://mailto:test@gmail.com)\",\"password\": \"123456\"}Response:{\"access_token\": \"jwt_token_here\",\"token_type\": \"bearer\"} 3. Use Token in Protected Routes  \nAdd this in headers:  \nAuthorization: Bearer 🗒 Notes APIs➕ Create Note  \nPOST /notes  \n{\"title\": \"My Note\",\"content\": \"This is my note content\"}📄 Get All Notes  \nGET /notes  \n✏️ Update Note  \nPUT /notes/{note_id}  \n{\"title\": \"Updated Title\",\"content\": \"Updated content\"}❌ Delete Note  \nDELETE /notes/{note_id}  \n🧪 Testing (Postman)  \nYou can test APIs using:  \nPostman Collection (recommended)Swagger UI (/docs)⚠️ Error Handling400 → Email already registered401 → Invalid credentials / Unauthorized access404 → Note not found500 → Server error🎯 Bonus Features ImplementedJWT Authentication 🔐Password hashing using bcrypt 🔑User-specific notes isolation 👤Swagger documentation 📘🚀 Future ImprovementsAdd pagination for notesRole-based access (Admin/User)Deploy using DockerDeploy on Render / AWS / RailwayAdd refresh tokens  \n👨‍💻 Author  \nAyushi SinhaBuilt as part of FastAPI backend assignment.  \nEndFragment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "22471620"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"ayusih@gmail.com\",\r\n  \"password\": \"121212\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/register",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"ayusih@gmail.com\",\r\n  \"password\": \"121212\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/login",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get all notes",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJheXVzaWhAZ21haWwuY29tIiwiZXhwIjoxNzc5ODY1NTIwfQ.25Z7jVOPSU3p51XkGjyIIs9Z4jAhRNfpjCsx-4QCO84",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/notes",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "notes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create notes",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJheXVzaWhAZ21haWwuY29tIiwiZXhwIjoxNzc5ODY1NTIwfQ.25Z7jVOPSU3p51XkGjyIIs9Z4jAhRNfpjCsx-4QCO84",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"My Third Note\",\r\n  \"content\": \"This is a test note from Postman\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/notes",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "notes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Notes",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJheXVzaWhAZ21haWwuY29tIiwiZXhwIjoxNzc5ODY1NTIwfQ.25Z7jVOPSU3p51XkGjyIIs9Z4jAhRNfpjCsx-4QCO84",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Updated 1st Code\",\r\n  \"content\": \"Updated content here\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/notes/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "notes",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Notes",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJheXVzaWhAZ21haWwuY29tIiwiZXhwIjoxNzc5ODY1NTIwfQ.25Z7jVOPSU3p51XkGjyIIs9Z4jAhRNfpjCsx-4QCO84",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/notes/3",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "notes",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
